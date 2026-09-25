@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rohan — The Person Behind the Work</title>
+<style>
+:root{
+  --bg:#090a0c;--panel:#111318;--panel2:#151820;--text:#f0f0eb;
+  --muted:#969aa5;--line:#292d36;--accent:#d8ff61;--soft:#c9cbd0
+}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}.container{width:min(1120px,calc(100% - 40px));margin:auto}
+nav{position:fixed;z-index:50;top:0;left:0;right:0;height:66px;background:rgba(9,10,12,.78);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)}
+.nav{height:100%;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:850;font-size:18px;letter-spacing:-.05em}.logo span{color:var(--accent)}
+.navlinks{display:flex;gap:20px;font-size:12px;color:var(--muted)}.navlinks a:hover{color:var(--text)}
+.hero{min-height:94vh;display:flex;align-items:center;padding-top:80px}
+.kicker{font-size:11px;color:var(--accent);font-weight:750;letter-spacing:.18em;text-transform:uppercase}
+h1{font-size:clamp(54px,9.5vw,116px);line-height:.88;letter-spacing:-.08em;max-width:950px;margin:24px 0}
+.hero-copy{font-size:clamp(18px,2.2vw,25px);color:var(--muted);max-width:700px}.scroll{margin-top:55px;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.16em}
+section{padding:115px 0;border-top:1px solid var(--line)}
+.section-head{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-bottom:42px}.section-head h2{font-size:clamp(38px,5vw,62px);letter-spacing:-.06em;line-height:.95;margin:0}.section-head p{color:var(--muted);max-width:500px;margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:27px;min-height:190px;transition:.25s}.card:hover{transform:translateY(-3px);border-color:#444955}.num{font-size:10px;color:var(--muted)}.card h3{font-size:21px;letter-spacing:-.035em;margin:28px 0 8px}.card p{font-size:14px;color:var(--muted);margin:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:16px}.quote{font-size:clamp(29px,4.2vw,51px);line-height:1.02;letter-spacing:-.055em;margin:0}.muted{color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:25px}.tag{font-size:12px;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:8px 12px}
+.life-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:14px}.photo-card{min-height:440px;border-radius:22px;overflow:hidden;border:1px solid var(--line);position:relative;background:linear-gradient(145deg,#181b21,#0f1014);display:flex;align-items:flex-end}.photo-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 70% 20%,rgba(216,255,97,.15),transparent 30%),linear-gradient(180deg,transparent 30%,rgba(0,0,0,.85));}.photo-card .photo-copy{position:relative;padding:28px;max-width:620px}.photo-copy h3{font-size:30px;letter-spacing:-.05em;margin:0 0 8px}.photo-copy p{color:#b7bac2;margin:0;font-size:14px}.photo-placeholder{height:100%;width:100%;display:flex;align-items:center;justify-content:center;position:absolute;color:#777b84;font-size:12px;text-transform:uppercase;letter-spacing:.14em}
+.life-small{display:grid;gap:14px}.mini{min-height:213px}
+.values{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.value{padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.value h3{margin:0 0 8px;font-size:20px}.value p{margin:0;color:var(--muted);font-size:14px}
+.guess-wrap{max-width:790px;margin:auto}.counter{font-size:11px;color:var(--muted);margin-bottom:12px}.guess-card{height:390px;perspective:1200px;cursor:pointer}.flip{width:100%;height:100%;position:relative;transition:transform .65s;transform-style:preserve-3d}.guess-card.flipped .flip{transform:rotateY(180deg)}.face{position:absolute;inset:0;backface-visibility:hidden;border:1px solid var(--line);border-radius:24px;background:var(--panel);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:35px}.face.back{transform:rotateY(180deg);background:var(--panel2)}.type{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}.face h3{font-size:clamp(26px,4vw,46px);line-height:1.05;letter-spacing:-.055em;max-width:680px;margin:22px 0}.hint{color:var(--muted);font-size:12px}.answer{font-size:70px;line-height:1;font-weight:900;letter-spacing:-.08em}.controls{display:flex;justify-content:center;gap:9px;margin-top:16px}button{background:var(--panel);color:var(--text);border:1px solid var(--line);border-radius:999px;padding:11px 18px;font:inherit;font-size:12px;cursor:pointer}button:hover{border-color:#575d68}button.primary{background:var(--accent);color:#111;border-color:var(--accent);font-weight:800}
+.invite{max-width:820px}.invite h2{font-size:clamp(46px,7vw,86px);line-height:.92;letter-spacing:-.075em;margin:0 0 24px}.invite p{font-size:20px;color:var(--muted);max-width:680px}.invite-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.invite-actions a{border:1px solid var(--line);padding:12px 17px;border-radius:999px;font-size:12px}.invite-actions a:hover{border-color:#555b66}
+footer{padding:100px 0 45px}.footer-title{font-size:clamp(45px,8vw,94px);line-height:.9;letter-spacing:-.075em;margin:0}.footer-sub{color:var(--muted);margin-top:20px}
+.reveal{opacity:0;transform:translateY(18px);transition:.7s ease}.reveal.show{opacity:1;transform:none}
+@media(max-width:760px){.container{width:min(100% - 28px,1120px)}.navlinks{display:none}.hero{min-height:86vh}.section-head,.split,.life-grid,.values{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.section-head{gap:18px}.photo-card{min-height:360px}.mini{min-height:180px}.guess-card{height:340px}section{padding:85px 0}}
+</style>
+</head>
+<body>
+<nav><div class="container nav"><a class="logo" href="#">R<span>.</span></a><div class="navlinks">
+<a href="#person">Person</a><a href="#connection">Connection</a><a href="#life">Life</a><a href="#guess">Guess</a><a href="#hello">Hello</a>
+</div></div></nav>
+
+<main>
+<section class="hero">
+<div class="container reveal">
+<div class="kicker">Personal portfolio / not a résumé</div>
+<h1>The person behind the work.</h1>
+<p class="hero-copy">There is a version of me outside the code, the architecture diagrams and the terminal windows. This is a small attempt at introducing him.</p>
+<div class="scroll">↓ Take your time.</div>
+</div>
+</section>
+
+<section id="person"><div class="container">
+<div class="section-head reveal"><h2>The person.</h2><p>Curious, occasionally complicated, generally trying to understand things instead of simply accepting them.</p></div>
+<div class="grid">
+<article class="card reveal"><div class="num">01</div><h3>Curiosity</h3><p>Give me an interesting question and there is a reasonable chance I'll disappear down a rabbit hole.</p></article>
+<article class="card reveal"><div class="num">02</div><h3>Contradictions</h3><p>I like structure and freedom. Simplicity and overthinking. People and personal space.</p></article>
+<article class="card reveal"><div class="num">03</div><h3>Still figuring it out</h3><p>I have plans. I also change them. The next chapter isn't completely written yet.</p></article>
+</div>
+</div></section>
+
+<section id="connection"><div class="container">
+<div class="section-head reveal"><h2>What am I like with someone?</h2><p>Not claims. Small behaviours. The things that are usually more revealing than a list of adjectives.</p></div>
+<div class="grid">
+<article class="card reveal"><div class="num">01</div><h3>When I care</h3><p>I remember small things. Sometimes annoyingly small things.</p></article>
+<article class="card reveal"><div class="num">02</div><h3>When something bothers me</h3><p>I don't always talk about it immediately. I'm learning that silence isn't the same as solving something.</p></article>
+<article class="card reveal"><div class="num">03</div><h3>When you need space</h3><p>I understand it. I need it too. Being close doesn't have to mean being attached at the hip.</p></article>
+<article class="card reveal"><div class="num">04</div><h3>When we disagree</h3><p>I'd rather understand why you think differently than win the argument.</p></article>
+<article class="card reveal"><div class="num">05</div><h3>When you're excited</h3><p>Explain it to me. You don't have to share all my interests. I want to understand why yours matter to you.</p></article>
+<article class="card reveal"><div class="num">06</div><h3>When I'm comfortable</h3><p>That's when the serious person disappears a little.</p></article>
+</div>
+</div></section>
+
+<section><div class="container split">
+<div class="reveal"><p class="kicker">The simple version</p><p class="quote">I don't need someone who agrees with everything I say. I'd rather have someone who makes me think.</p></div>
+<div class="card reveal"><p class="muted">And probably someone who will tell me when I'm being an idiot.</p><div class="tags"><span class="tag">Curiosity</span><span class="tag">Independence</span><span class="tag">Directness</span><span class="tag">Space</span><span class="tag">Humour</span><span class="tag">Respect</span></div></div>
+</div></section>
+
+<section id="life"><div class="container">
+<div class="section-head reveal"><h2>Pieces of my life.</h2><p>Photos should feel like fragments of a life, not evidence for a résumé. Replace these placeholders with your own public photo links.</p></div>
+<div class="life-grid">
+<div class="photo-card reveal"><div class="photo-placeholder">YOUR PHOTO / GOOGLE PHOTOS / CLOUDINARY</div><div class="photo-copy"><h3>A completely ordinary moment.</h3><p>Nothing particularly important happened. I liked it anyway.</p></div></div>
+<div class="life-small">
+<div class="photo-card mini reveal"><div class="photo-placeholder">PHOTO</div><div class="photo-copy"><h3>A place.</h3><p>I don't need a profound story about it. I just remember how it felt.</p></div></div>
+<div class="photo-card mini reveal"><div class="photo-placeholder">PHOTO</div><div class="photo-copy"><h3>Something I made.</h3><p>Sometimes the side quest becomes the memory.</p></div></div>
+</div>
+</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-head reveal"><h2>The little things.</h2><p>The details that make an ordinary person feel less like a profile and more like a person.</p></div>
+<div class="grid">
+<article class="card reveal"><div class="num">01</div><h3>Music</h3><p>Sometimes a song gets more attention than it probably deserves. Sometimes it deserves every replay.</p></article>
+<article class="card reveal"><div class="num">02</div><h3>Games</h3><p>Competitive enough to care. Humble enough to have evidence that I should be.</p></article>
+<article class="card reveal"><div class="num">03</div><h3>Horror</h3><p>I like stories that make you uncomfortable, curious, and slightly suspicious of the dark.</p></article>
+<article class="card reveal"><div class="num">04</div><h3>Random rabbit holes</h3><p>Something can start with “I wonder how that works” and end much later than it should.</p></article>
+<article class="card reveal"><div class="num">05</div><h3>Doing nothing</h3><p>I'm learning that not every Sunday needs to become a productive achievement.</p></article>
+<article class="card reveal"><div class="num">06</div><h3>Small details</h3><p>I tend to remember strange little things. Useful sometimes. Completely unnecessary other times.</p></article>
+</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-head reveal"><h2>The imperfect bits.</h2><p>A personal portfolio should probably admit that the person isn't a finished product.</p></div>
+<div class="values">
+<div class="value reveal"><h3>I overthink.</h3><p>Sometimes I try to solve things that simply need to be felt.</p></div>
+<div class="value reveal"><h3>I can be stubborn.</h3><p>Especially when I think something matters. I'm learning to distinguish conviction from attachment.</p></div>
+<div class="value reveal"><h3>I don't always communicate immediately.</h3><p>Sometimes I need time to understand what I'm actually feeling before I can explain it.</p></div>
+<div class="value reveal"><h3>I'm still figuring out the bigger picture.</h3><p>I know some things I want. I don't pretend to have the entire map.</p></div>
+</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-head reveal"><h2>What I value.</h2><p>Not because they sound good. Because they make relationships, friendships and everyday life easier to live in.</p></div>
+<div class="grid">
+<article class="card reveal"><div class="num">01</div><h3>Respect</h3><p>You can disagree with someone without reducing them.</p></article>
+<article class="card reveal"><div class="num">02</div><h3>Curiosity</h3><p>You don't need to know everything. Being interested is enough to start.</p></article>
+<article class="card reveal"><div class="num">03</div><h3>Independence</h3><p>Being close shouldn't require giving up the parts of yourself that existed before the relationship.</p></article>
+<article class="card reveal"><div class="num">04</div><h3>Directness</h3><p>I'd rather hear something uncomfortable than spend days guessing what someone meant.</p></article>
+<article class="card reveal"><div class="num">05</div><h3>Humour</h3><p>Life is already serious enough. There should be room to be ridiculous.</p></article>
+<article class="card reveal"><div class="num">06</div><h3>Growth</h3><p>Not constant self-improvement. Just being willing to notice when something needs to change.</p></article>
+</div>
+</div></section>
+
+<section id="guess"><div class="container">
+<div class="section-head reveal"><h2>Guess me.</h2><p>Choose YES or NO in your head. Then flip the card. No score. No compatibility percentage. Just curiosity.</p></div>
+<div class="guess-wrap reveal">
+<div class="counter" id="counter"></div>
+<div class="guess-card" id="guessCard"><div class="flip">
+<div class="face"><div class="type" id="category">LIGHT</div><h3 id="question"></h3><div class="hint">Click the card to reveal the answer</div></div>
+<div class="face back"><div class="type">Answer</div><div class="answer" id="answer"></div><p class="muted" id="answerNote"></p></div>
+</div></div>
+<div class="controls"><button id="noBtn">NO</button><button class="primary" id="yesBtn">YES</button><button id="nextBtn">Next →</button></div>
+</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-head reveal"><h2>What being close might feel like.</h2><p>Not promises. Just the kind of everyday things I think matter.</p></div>
+<div class="grid">
+<article class="card reveal"><h3>Remembering</h3><p>Sending you something because it reminded me of you.</p></article>
+<article class="card reveal"><h3>Space</h3><p>Giving you room without turning distance into punishment.</p></article>
+<article class="card reveal"><h3>Curiosity</h3><p>Wanting to know why something matters to you.</p></article>
+<article class="card reveal"><h3>Ridiculousness</h3><p>Making fun of each other without crossing the line.</p></article>
+<article class="card reveal"><h3>Silence</h3><p>Doing absolutely nothing together and not needing to fill every second.</p></article>
+<article class="card reveal"><h3>Honesty</h3><p>Being able to say “that hurt” or “I was wrong” without turning it into a battle.</p></article>
+</div>
+</div></section>
+
+<section><div class="container">
+<div class="section-head reveal"><h2>Things I hope you don't expect from me.</h2><p>Because being honest about limitations is more useful than pretending to be a finished product.</p></div>
+<div class="split">
+<div class="card reveal"><p class="quote">I won't always have the right answer.</p></div>
+<div class="card reveal"><p class="muted">I won't always understand what you're feeling immediately. I won't pretend to be someone I'm not just to be liked. I can't promise I'll never mess up. I can promise that if something matters, I'll try to deal with it rather than run from it.</p></div>
+</div>
+</div></section>
+
+<section id="hello"><div class="container invite reveal">
+<div class="kicker">The invitation</div>
+<h2>You don't have to figure me out from a website.</h2>
+<p>Ask me something. Tell me something I don't know. Send me a song. Challenge something I said. Or just say hello.</p>
+<div class="invite-actions">
+<a href="#guess">Ask me something →</a>
+<a href="#life">See the little things →</a>
+<a href="mailto:hello@example.com">Say hello →</a>
+</div>
+</div></section>
+</main>
+
+<footer><div class="container reveal"><h2 class="footer-title">Do you actually know me now?</h2><p class="footer-sub">Probably not. That's the point.</p></div></footer>
+
+<script>
+const questions=[
+["LIGHT","Can I spend three hours researching something that doesn't actually matter?","YES","Unfortunately, yes."],
+["REAL","Do I like having my own space sometimes?","YES","Being close doesn't mean being attached at the hip."],
+["REAL","Would I rather understand why you think differently than win an argument?","YES","Curiosity usually beats the scoreboard."],
+["LIGHT","Would I judge your movie choices?","YES","Probably. Gently."],
+["LIGHT","Would I still watch the movie with you?","YES","Obviously."],
+["REAL","Do I always finish everything I start?","NO","Some ideas become side quests."],
+["UNEXPECTED","Can a song completely change my mood?","YES","Music gets that privilege."],
+["REAL","Do I have my entire future figured out?","NO","Still writing that part."],
+["REAL","Could I admit when I'm wrong?","YES","Eventually. And preferably before the evidence becomes embarrassing."],
+["UNEXPECTED","Have I built something simply because I wanted to see if I could?","YES","Probably the easiest prediction here."],
+["REAL","Would I want someone I care about to keep their own hobbies and friends?","YES","Absolutely."],
+["UNEXPECTED","Do I sometimes try to solve things that simply need to be felt?","YES","Still learning that one."],
+["REAL","Would I rather hear something uncomfortable than spend days guessing what someone meant?","YES","Directness saves a lot of unnecessary stories."],
+["REAL","Am I finished figuring myself out?","NO","Definitely not."]
+];
+let i=0;
+const card=document.getElementById("guessCard"), q=document.getElementById("question"), a=document.getElementById("answer"), n=document.getElementById("answerNote"), c=document.getElementById("counter"), cat=document.getElementById("category");
+function render(){card.classList.remove("flipped");cat.textContent=questions[i][0];q.textContent=questions[i][1];a.textContent=questions[i][2];n.textContent=questions[i][3];c.textContent=`${String(i+1).padStart(2,"0")} / ${String(questions.length).padStart(2,"0")}`}
+card.onclick=()=>card.classList.toggle("flipped");
+document.getElementById("nextBtn").onclick=()=>{i=(i+1)%questions.length;render()};
+document.getElementById("yesBtn").onclick=()=>card.classList.add("flipped");
+document.getElementById("noBtn").onclick=()=>card.classList.add("flipped");
+render();
+
+const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")}),{threshold:.08});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
