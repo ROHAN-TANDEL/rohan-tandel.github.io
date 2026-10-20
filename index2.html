@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Pixel Assembly Simulator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1c;
+            font-family: sans-serif;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Creates structural room to allow page scrolling */
+        .scroll-space {
+            height: 350vh; 
+            position: relative;
+        }
+
+        /* Centers and locks the animation window during scroll tracking */
+        .canvas-holder {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw;
+            max-width: 450px;
+            pointer-events: none;
+        }
+
+        canvas {
+            width: 100%;
+            height: auto;
+            display: block;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .scroll-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            animation: pulseText 2.5s infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.9; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scroll-space">
+        <div class="canvas-holder">
+            <canvas id="displaceCanvas"></canvas>
+        </div>
+        <div class="scroll-hint">Scroll down slowly to resolve text</div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('displaceCanvas');
+        const ctx = canvas.getContext('2d');
+
+        // Block Customization Variables
+        const blockSize = 6; // Dimensions of each individual floating box
+        const pixelCluster = [];
+        let canvasW, canvasH;
+
+        // Instantiating the user source snapshot
+        const imageSource = new Image();
+        
+        // Embedded Base64 Data URL for your image layout
+        imageSource.src = 'data:image/png;base64,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'; 
+
+        imageSource.onload = function() {
+            // Set canvas structure proportional to the text layout dimensions
+            canvas.width = imageSource.width;
+            canvas.height = imageSource.height;
+            canvasW = imageSource.width;
+            canvasH = imageSource.height;
+
+            // Extract baseline pixel configurations
+            ctx.drawImage(imageSource, 0, 0);
+            
+            // Map out coordinates to split layout into distinct particle pieces
+            for (let y = 0; y < canvasH; y += blockSize) {
+                for (let x = 0; x < canvasW; x += blockSize) {
+                    
+                    // Creates an expansive random scattering offset field across coordinates
+                    const offscreenX = (Math.random() - 0.5) * canvasW * 3.5 + canvasW / 2;
+                    const offscreenY = (Math.random() - 0.5) * canvasH * 3.5 + canvasH / 2;
+
+                    pixelCluster.push({
+                        destinationX: x,       
+                        destinationY: y,       
+                        originX: offscreenX,  
+                        originY: offscreenY,  
+                        trackX: offscreenX,
+                        trackY: offscreenY
+                    });
+                }
+            }
+
+            // Fire loop calculations
+            renderFrame();
+        };
+
+        function renderFrame() {
+            // Translate page scrolling depth into progress values ranging from 0.0 to 1.0
+            const currentScroll = window.scrollY;
+            const totalScrollableArea = document.documentElement.scrollHeight - window.innerHeight;
+            const timelineFactor = Math.min(currentScroll / totalScrollableArea, 1);
+
+            // Wipe drawing canvas clean before recalculating new placements
+            ctx.clearRect(0, 0, canvasW, canvasH);
+
+            // Adjust positions and redraw individual layout squares
+            pixelCluster.forEach(block => {
+                // Smooth linear path interpolation between scattered states and final targets
+                block.trackX = block.originX + (block.destinationX - block.originX) * timelineFactor;
+                block.trackY = block.originY + (block.destinationY - block.originY) * timelineFactor;
+
+                // Crop corresponding visual chunk from image array and render on map coordinates
+                ctx.drawImage(
+                    imageSource, 
+                    block.destinationX, block.destinationY, blockSize, blockSize, 
+                    block.trackX, block.trackY, blockSize, blockSize 
+                );
+            });
+
+            // Re-render frame configurations continuously
+            requestAnimationFrame(renderFrame);
+        }
+    </script>
+</body>
+</html>
+
